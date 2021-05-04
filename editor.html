@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/7f8f07744b.js" crossorigin="anonymous"></script>
+        
+        
+    </head>
+    <body>
+        
+        <header>
+            
+        </header>
+        
+        <div class="container">
+            <!--START OF TOOLBAR DIV-->
+                <div class="row justify-content-center" id="titleBox"><p id="title" style="color: white;"></p></div>
+                <!--javascript to display title-->
+                <script>
+                    var title = document.getElementById("title");
+                    title.appendChild(document.createTextNode(localStorage.getItem("title")));
+                </script>
+
+                <div class="row">
+                    <nav id="navContainer" >
+                        <!--FONT SELECT TOOL-->
+                        <div id="fontBox">
+                            <div class="col-sm-1">
+                                <i class="fa fa-font"></i>
+                            </div>
+                            <div class="col-sm-5" id="selectBox">
+                                <select class="form-select" id="fontSelect" aria-label="Default select example" onchange="fontFunction()">
+                                    <option value="'Arial'" style="font-family: Arial;"> Arial </option>
+                                    <option value="'Century'" style="font-family: Century;">Century</option>
+                                    <option value="'Consolas'" style="font-family: Consolas;"> Consolas</option>
+                                </select><!--END OF FONT-FAMILY SELECT FORM-->
+
+                                <select class="form-select" id="sizeSelect" aria-label="Default select example" onchange="sizeFunction()">
+                                    <option value="3" style="font-size: small;">Small</option>
+                                    <option value="5" style="font-size: medium;">Medium</option>
+                                    <option value="6" style="font-size: large;">Large</option>
+                                    <option value="7" style="font-size: x-large;">X-Large</option>
+                                </select><!--END OF FONT-SIZE SELECT FORM-->
+                            </div> 
+                        </div>
+
+                        <!--TOOLBAR BUTTONS-->
+                        <button id="boldButton" title="BOLD" onclick="execCommand('bold',false,null)">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button id="italicButton" title="ITALIC" onclick="execCommand('italic',false,null)">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button id="underlineButton" title="UNDERLINE" onclick="execCommand('underline',false,null)">
+                            <i class="fas fa-underline"></i>
+                        </button>
+                        <button id="leftButton" title="TEXT-ALIGN LEFT" onclick="document.execCommand('justifyLeft',false,null)">
+                            <i class="fas fa-align-left" ></i>
+                        </button>
+                        <button id="centerButton" title="TEXT-ALIGN CENTER" onclick="document.execCommand('justifyCenter',false,null)">
+                            <i class="fas fa-align-center"></i>
+                        </button>
+                        <button id="rightButton" title="TEXT-ALIGN RIGHT" onclick="document.execCommand('justifyRight',false,null)">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                        <button id="saveButton" title ="SAVE" onclick="saveFunction()">
+                            <i class="fas fa-save"></i>
+                        </button>
+                        <button id="oppenButton" title ="OPEN NEW FILE" onclick="openNewFunction()">
+                            <i class="fas fa-file"></i>
+                        </button>
+                        
+                    </nav><!---->
+                </div>
+                
+                <!--Text Area-->
+                <div class="row" id="textBox">
+                    <p contenteditable="true" id="textArea" oninput="displayWordCount()"></p>
+                </div>
+                <!--DISPLAY SAVED NOTE-->
+                <script>
+                        var getSavedItem = '"'+ localStorage.getItem('title')+'"';
+                        console.log(getSavedItem);
+                        document.getElementById('textArea').innerHTML = localStorage.getItem(getSavedItem);
+                </script>
+
+                <div class="row" id="footer">
+                    <div class="col-sm-5" id="countDiv"><p id="wordCount">Words: 0</p></div>
+                    <div class="col-sm-7 text-right" id="saveDiv"><p id="lastSave">Last Saved:</p></div>
+        
+                </div>
+        </div>
+        <script src="/javascript/java.js" async></script>
+    </body>
+</html>

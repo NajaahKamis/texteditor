@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/7f8f07744b.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center" id="head"><p>Text Editor Beta Test</p></div>
+            <div class="row" id="wrapper">
+                <div class="col-sm-6-flex justify-content-center" id="newBox">
+                    <div class="row justify-content-center"><h5>Create New Files</h5></div>
+                    <div class="row justify-content-center"><input type="text" id="newFile" placeholder="   file name..."></div>
+                    <div class="row justify-content-center">
+                        <button onclick="createFunction()">Create New</button> 
+                        <p id="fileNameError" style="color: red;"></p>
+                    </div>
+                </div>
+                <div class="col-sm-6-flex justify-content-center" id="recentBox">
+                    <div class="row justify-content-center"><h5>Open Recent Files</h5></div>
+                    <div class="row justify-content-center">
+                        <select class="form-select" id="titleSelect" aria-label="Default select example">
+                            <option value="default">Please select file</option>
+                        </select>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button onclick="openFunction()">Open File</button> 
+                        <p id="selectFileError" style="color: red;"></p>
+                    </div>
+                </div>
+                <script>
+                    var updateList = localStorage.getItem("updateList");
+                    document.getElementById("titleSelect").innerHTML = updateList;
+                    var savedList = document.getElementById("titleSelect");
+                    console.log(savedList);
+                    var newList = localStorage.getItem("savedList");
+                    var check1 = String(savedList.innerHTML);
+                    var check2 = localStorage.getItem("savedTitle");
+
+                    if( check2 !== null){
+                        if( check1.indexOf(check2) === -1){
+                            var option = document.createElement("option");
+                            option.setAttribute("value",check2);
+                            option.innerHTML = newList;
+                            savedList.appendChild(option);
+                            localStorage.setItem("updateList", document.getElementById("titleSelect").innerHTML);
+                        }  
+                    } 
+                </script>
+                
+            </div>
+        </div>
+        <script src="/javascript/java.js" async></script>
+    </body>
+</html>
